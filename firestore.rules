@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isStaff() {
+      return isAuthenticated() && (request.auth.token.role == 'ADMIN' || request.auth.token.role == 'CHOFER' || request.auth.token.role == 'OPERARIO');
+    }
+
+    function isCustomerOwner(customerId) {
+      return isAuthenticated() && request.auth.uid == customerId;
+    }
+
+    // Órdenes de Mudanza e Inventario de Bultos
+    match /move_orders/{orderId} {
+      allow read: if isStaff() || (isAuthenticated() && resource.data.customerId == request.auth.uid);
+      allow create: if isStaff();
+      // Órdenes finalizadas y selladas no pueden modificarse
+      allow update: if isStaff() && resource.data.status != 'DELIVERED_CONFIRMED';
+      allow delete: if false; // Invariante de auditoría forense
+    }
+
+    // Bauleras y Contratos de Self-Storage
+    match /storage_units/{unitId} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+
+    match /storage_contracts/{contractId} {
+      allow read: if isStaff() || (isAuthenticated() && resource.data.customerId == request.auth.uid);
+      allow write: if isStaff();
+    }
+  }
+}

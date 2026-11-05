@@ -1,0 +1,259 @@
+{
+  "communities": {
+    "0": [
+      "src_utils_formatters",
+      "tests_run_tests",
+      "tests_run_tests_assert",
+      "tests_run_tests_badgeblocked",
+      "tests_run_tests_badgedelivered",
+      "tests_run_tests_badgetransit",
+      "tests_run_tests_cachedmoves",
+      "tests_run_tests_cleanrisk",
+      "tests_run_tests_csvoutput",
+      "tests_run_tests_customitems",
+      "tests_run_tests_damageitem",
+      "tests_run_tests_deliveredmove",
+      "tests_run_tests_dunning20",
+      "tests_run_tests_dunning35",
+      "tests_run_tests_dunning8",
+      "tests_run_tests_dunningclean",
+      "tests_run_tests_e2edelivered",
+      "tests_run_tests_e2eloaded",
+      "tests_run_tests_e2emove",
+      "tests_run_tests_escaped",
+      "tests_run_tests_evaluatedcontract",
+      "tests_run_tests_fbcontent",
+      "tests_run_tests_fbpath",
+      "tests_run_tests_futuredue",
+      "tests_run_tests_gitignorecontent",
+      "tests_run_tests_itemssample",
+      "tests_run_tests_largeitems",
+      "tests_run_tests_loadedorder",
+      "tests_run_tests_moveorder",
+      "tests_run_tests_negativevol",
+      "tests_run_tests_now",
+      "tests_run_tests_nullduedunning",
+      "tests_run_tests_nullvol",
+      "tests_run_tests_overdue20days",
+      "tests_run_tests_overdue35days",
+      "tests_run_tests_overdue8days",
+      "tests_run_tests_packagejson",
+      "tests_run_tests_rulescontent",
+      "tests_run_tests_rulespath",
+      "tests_run_tests_severedamages",
+      "tests_run_tests_severerisk",
+      "tests_run_tests_storagecontract",
+      "tests_run_tests_tamperedmove",
+      "tests_run_tests_unicodehash",
+      "tests_run_tests_unicodemove",
+      "tests_run_tests_versionjson",
+      "tests_run_tests_volcustom",
+      "tests_run_tests_vollarge",
+      "tests_run_tests_volres",
+      "tests_run_tests_wamanifest",
+      "tests_run_tests_wastorage"
+    ],
+    "1": [
+      "src_core_damagepreinspectionengine",
+      "src_core_damagepreinspectionengine_damage_types",
+      "src_core_damagepreinspectionengine_damagepreinspectionengine",
+      "src_core_damagepreinspectionengine_damagepreinspectionengine_evaluaterisklevel",
+      "src_core_volumecalculator",
+      "src_core_volumecalculator_item_cubic_standards",
+      "src_core_volumecalculator_vehicle_fleet",
+      "src_core_volumecalculator_volumecalculator",
+      "src_core_volumecalculator_volumecalculator_calculatetotalm3",
+      "src_core_volumecalculator_volumecalculator_suggestvehicle",
+      "src_main",
+      "src_services_exportservice",
+      "src_services_exportservice_exportservice",
+      "src_services_exportservice_exportservice_exporttoexcelcsv",
+      "src_services_moveorderservice",
+      "src_services_moveorderservice_moveorderservice",
+      "src_services_moveorderservice_moveorderservice_confirmdestinationdelivery",
+      "src_services_moveorderservice_moveorderservice_createorder",
+      "src_services_moveorderservice_moveorderservice_sealoriginloading",
+      "src_services_moveorderservice_moveorderservice_verifyorderseal",
+      "src_utils_cryptoseal",
+      "src_utils_cryptoseal_cryptoseal",
+      "src_utils_cryptoseal_sha256sync",
+      "src_utils_cryptoseal_toutf8binarystring",
+      "src_utils_sanitizer"
+    ],
+    "2": [
+      "src_main_boxtrackapp",
+      "src_main_boxtrackapp_bindevents",
+      "src_main_boxtrackapp_closedamagemodal",
+      "src_main_boxtrackapp_closemovemodal",
+      "src_main_boxtrackapp_constructor",
+      "src_main_boxtrackapp_handlecreatedamage",
+      "src_main_boxtrackapp_handlecreatemove",
+      "src_main_boxtrackapp_handledestinationdeliver",
+      "src_main_boxtrackapp_handleorigincheckin",
+      "src_main_boxtrackapp_handlewhatsappnotify",
+      "src_main_boxtrackapp_init",
+      "src_main_boxtrackapp_opendamagemodal",
+      "src_main_boxtrackapp_openmovemodal",
+      "src_main_boxtrackapp_renderall",
+      "src_main_boxtrackapp_renderdamagesgrid",
+      "src_main_boxtrackapp_renderdashboardtable",
+      "src_main_boxtrackapp_renderinventoryselector",
+      "src_main_boxtrackapp_renderinventorytable",
+      "src_main_boxtrackapp_rendermetrics",
+      "src_main_boxtrackapp_rendermovecards",
+      "src_main_boxtrackapp_renderstoragecards",
+      "src_main_boxtrackapp_switchtab",
+      "src_main_boxtrackapp_updatevolumeestimator",
+      "src_utils_formatters_formatters",
+      "src_utils_sanitizer_sanitizer"
+    ],
+    "3": [
+      "src_services_boxtrackcache_service",
+      "src_services_boxtrackcache_service_boxtrackcacheservice",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_clearoutbox",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_enqueueoutbox",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_getcontracts",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_getorders",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_getoutbox",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_ispurged",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_purgedata",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_resetpurgefortesting",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_savecontracts",
+      "src_services_boxtrackcache_service_boxtrackcacheservice_saveorders",
+      "src_services_boxtrackcache_service_getstorageitem",
+      "src_services_boxtrackcache_service_memorystore",
+      "src_services_boxtrackcache_service_removestorageitem",
+      "src_services_boxtrackcache_service_setstorageitem"
+    ],
+    "4": [
+      "package",
+      "package_author",
+      "package_description",
+      "package_license",
+      "package_name",
+      "package_scripts",
+      "package_scripts_security_full",
+      "package_scripts_test",
+      "package_scripts_test_security",
+      "package_scripts_version_bump",
+      "package_type",
+      "package_version"
+    ],
+    "5": [
+      "src_core_damagepreinspectionengine_damagepreinspectionengine_recordpreexistingdamage",
+      "src_core_storagedunningsentinel",
+      "src_core_storagedunningsentinel_storage_units_catalog",
+      "src_core_storagedunningsentinel_storagedunningsentinel",
+      "src_core_storagedunningsentinel_storagedunningsentinel_evaluatedunning",
+      "src_main_boxtrackapp_seedinitialdemodata",
+      "src_services_storagecontractservice",
+      "src_services_storagecontractservice_storagecontractservice",
+      "src_services_storagecontractservice_storagecontractservice_createcontract",
+      "src_services_storagecontractservice_storagecontractservice_evaluatecontractstatus"
+    ],
+    "6": [
+      "src_services_whatsappboxnotifier_service",
+      "src_services_whatsappboxnotifier_service_whatsappboxnotifierservice",
+      "src_services_whatsappboxnotifier_service_whatsappboxnotifierservice_notifymovemanifest",
+      "src_services_whatsappboxnotifier_service_whatsappboxnotifierservice_notifystoragerent"
+    ],
+    "7": [
+      "src_services_whatsappboxnotifier_service_whatsappboxnotifier"
+    ]
+  },
+  "cohesion": {
+    "0": 0.0392156862745098,
+    "1": 0.12333333333333334,
+    "2": 0.20666666666666667,
+    "3": 0.24166666666666667,
+    "4": 0.16666666666666666,
+    "5": 0.3111111111111111,
+    "6": 0.5,
+    "7": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_main_boxtrackapp",
+      "label": "BoxTrackApp",
+      "degree": 24
+    },
+    {
+      "id": "src_services_boxtrackcache_service_boxtrackcacheservice",
+      "label": "BoxTrackCacheService",
+      "degree": 13
+    },
+    {
+      "id": "src_utils_sanitizer_sanitizer",
+      "label": "Sanitizer",
+      "degree": 9
+    },
+    {
+      "id": "src_services_moveorderservice_moveorderservice",
+      "label": "MoveOrderService",
+      "degree": 7
+    },
+    {
+      "id": "src_utils_formatters_formatters",
+      "label": "Formatters",
+      "degree": 7
+    },
+    {
+      "id": "src_core_damagepreinspectionengine_damagepreinspectionengine",
+      "label": "DamagePreInspectionEngine",
+      "degree": 6
+    },
+    {
+      "id": "src_core_volumecalculator_volumecalculator",
+      "label": "VolumeCalculator",
+      "degree": 6
+    },
+    {
+      "id": "src_services_boxtrackcache_service_getstorageitem",
+      "label": "getStorageItem()",
+      "degree": 6
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 5
+    },
+    {
+      "id": "src_services_boxtrackcache_service_setstorageitem",
+      "label": "setStorageItem()",
+      "degree": 5
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `BoxTrackCacheService` connect `Community 3` to `Community 0`, `Community 1`?",
+      "why": "High betweenness centrality (0.114) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `BoxTrackApp` connect `Community 2` to `Community 1`, `Community 5`?",
+      "why": "High betweenness centrality (0.095) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `ExportService` connect `Community 1` to `Community 0`, `Community 2`?",
+      "why": "High betweenness centrality (0.062) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `version`, `description` to the rest of the system?",
+      "why": "60 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.0392156862745098 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12333333333333334 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

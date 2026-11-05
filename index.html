@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BoxTrack v1.0.00 — Gestión Forense de Mudanzas Corporativas y Guardamuebles</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><path d='M21 16.5l-9 5.25-9-5.25V7.5l9-5.25 9 5.25v9z'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+      .print-only { display: block !important; }
+    }
+    .touch-target { min-height: 44px; min-width: 44px; }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased select-none">
+  <!-- Top Navigation Bar -->
+  <header class="no-print bg-slate-900 border-b border-slate-800 sticky top-0 z-40 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-black text-xl">
+        📦
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-bold text-base md:text-lg tracking-tight text-white">BoxTrack</h1>
+          <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">v1.0.00</span>
+          <span id="network-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">ONLINE</span>
+        </div>
+        <p class="text-xs text-slate-400 hidden sm:block">Mudanzas Corporativas, Cubaje, Fotos Pre-Daño, Rótulos QR y Guardamuebles</p>
+      </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="flex items-center gap-2">
+      <button id="btn-export-csv" class="no-print touch-target px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 flex items-center gap-1.5 transition">
+        <span>📑</span> <span class="hidden md:inline">Exportar CSV</span>
+      </button>
+      <button id="btn-new-move" class="no-print touch-target px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 flex items-center gap-1.5 transition">
+        <span>+</span> <span>Nueva Mudanza</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Bottom Tab Navigation -->
+  <nav class="no-print sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur border-t border-slate-800 flex justify-around py-2 px-1">
+    <button data-tab="dashboard" class="tab-btn flex flex-col items-center text-[10px] text-slate-400 hover:text-white px-2 py-1 active:scale-95">
+      <span class="text-lg">📊</span>
+      <span>Métricas</span>
+    </button>
+    <button data-tab="moves" class="tab-btn flex flex-col items-center text-[10px] text-indigo-400 font-semibold px-2 py-1 active:scale-95">
+      <span class="text-lg">🚚</span>
+      <span>Mudanzas</span>
+    </button>
+    <button data-tab="damages" class="tab-btn flex flex-col items-center text-[10px] text-slate-400 hover:text-white px-2 py-1 active:scale-95">
+      <span class="text-lg">📸</span>
+      <span>Pre-Daño</span>
+    </button>
+    <button data-tab="storage" class="tab-btn flex flex-col items-center text-[10px] text-slate-400 hover:text-white px-2 py-1 active:scale-95">
+      <span class="text-lg">🏢</span>
+      <span>Bauleras</span>
+    </button>
+  </nav>
+
+  <!-- Main Layout -->
+  <div class="flex-1 flex overflow-hidden">
+    <!-- Desktop Sidebar -->
+    <aside class="no-print hidden sm:flex flex-col w-60 bg-slate-900 border-r border-slate-800 p-4 gap-2">
+      <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400 px-3 py-1">Navegación</div>
+      <button data-tab="dashboard" class="tab-btn touch-target flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-left">
+        <span class="text-base">📊</span> <span>Dashboard General</span>
+      </button>
+      <button data-tab="moves" class="tab-btn touch-target flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 transition text-left">
+        <span class="text-base">🚚</span> <span>Mudanzas & Cubaje</span>
+      </button>
+      <button data-tab="damages" class="tab-btn touch-target flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-left">
+        <span class="text-base">📸</span> <span>Relevamiento Pre-Daño</span>
+      </button>
+      <button data-tab="inventory" class="tab-btn touch-target flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-left">
+        <span class="text-base">🏷️</span> <span>Rótulos QR de Bultos</span>
+      </button>
+      <button data-tab="storage" class="tab-btn touch-target flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-left">
+        <span class="text-base">🏢</span> <span>Guardamuebles & Mora</span>
+      </button>
+
+      <div class="mt-auto pt-4 border-t border-slate-800/80">
+        <div class="bg-slate-800/40 rounded-xl p-3 border border-slate-800 text-[11px] text-slate-400 flex flex-col gap-1">
+          <div class="flex items-center justify-between text-slate-300 font-medium">
+            <span>Sello Criptográfico</span>
+            <span class="text-emerald-400">SHA-256</span>
+          </div>
+          <p class="text-[10px] text-slate-400">Hash inmutable en actas de carga y entrega final ePOD.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Stage -->
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 pb-20 sm:pb-6 space-y-6">
+      
+      <!-- TAB: DASHBOARD -->
+      <section id="tab-dashboard" class="tab-content hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white tracking-tight">Centro de Control de Operaciones</h2>
+            <p class="text-xs text-slate-400">Monitoreo forense de traslados corporativos y ocupación de bauleras</p>
+          </div>
+          <div class="flex gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+              🛡️ Protocolo Pre-Daño Activo
+            </span>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-medium text-slate-400">Mudanzas en Curso</span>
+            <div class="flex items-baseline gap-2">
+              <span id="metric-active-moves" class="text-2xl font-bold text-indigo-400">0</span>
+              <span class="text-xs text-slate-400">activas</span>
+            </div>
+            <span class="text-[10px] text-slate-400">Flotas en tránsito y origen</span>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-medium text-slate-400">Volumen Trasladado</span>
+            <div class="flex items-baseline gap-2">
+              <span id="metric-total-m3" class="text-2xl font-bold text-cyan-400">0.00</span>
+              <span class="text-xs text-slate-400">m³</span>
+            </div>
+            <span class="text-[10px] text-slate-400">Total neto inventariado</span>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-medium text-slate-400">Bauleras Alquiladas</span>
+            <div class="flex items-baseline gap-2">
+              <span id="metric-storage-units" class="text-2xl font-bold text-emerald-400">0</span>
+              <span class="text-xs text-slate-400">unidades</span>
+            </div>
+            <span class="text-[10px] text-slate-400">Self-storage con PIN activo</span>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-medium text-slate-400">Alertas de Mora</span>
+            <div class="flex items-baseline gap-2">
+              <span id="metric-dunning-alerts" class="text-2xl font-bold text-rose-400">0</span>
+              <span class="text-xs text-slate-400">casos</span>
+            </div>
+            <span class="text-[10px] text-slate-400">Bloqueos y remates legales</span>
+          </div>
+        </div>
+
+        <!-- Recent Move Operations Table -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-white">Últimas Operaciones de Traslado</h3>
+            <span class="text-xs text-slate-400 font-mono">Tiempo Real</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="text-slate-400 border-b border-slate-800 text-[11px] uppercase tracking-wider font-mono">
+                <tr>
+                  <th class="pb-2">Orden</th>
+                  <th class="pb-2">Cliente / Empresa</th>
+                  <th class="pb-2">Ruta</th>
+                  <th class="pb-2">Volumen</th>
+                  <th class="pb-2">Estado</th>
+                  <th class="pb-2">Sello SHA-256</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-moves-tbody" class="divide-y divide-slate-800/60 font-sans">
+                <!-- Dynamically injected via Sanitizer.safeSetInnerHTML -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: MOVES & VOLUME ESTIMATOR -->
+      <section id="tab-moves" class="tab-content space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white tracking-tight">Gestión de Mudanzas & Cubaje</h2>
+            <p class="text-xs text-slate-400">Calculadora de volumen volumétrico m³, asignación de camión y control de bultos</p>
+          </div>
+          <button id="btn-toggle-estimator" class="touch-target px-3 py-1.5 rounded-lg bg-indigo-600/30 text-indigo-300 hover:bg-indigo-600/40 border border-indigo-500/40 text-xs font-semibold flex items-center gap-1.5 transition">
+            <span>📐</span> <span>Calculador de Cubaje Rápido</span>
+          </button>
+        </div>
+
+        <!-- Volume Estimator Drawer / Card -->
+        <div id="volume-estimator-card" class="bg-slate-900 border border-indigo-500/30 rounded-2xl p-4 sm:p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-indigo-400 font-bold text-sm">📐 Estimador Automático de Mudanza</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-mono">+10% Buffer de Estiba</span>
+            </div>
+            <span id="calc-suggested-vehicle" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Camión Sugerido: -</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+              <label class="text-[10px] text-slate-400 block mb-1">Cajas Estándar (0.10 m³)</label>
+              <input type="number" min="0" value="25" id="inp-box-std" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white text-center font-bold">
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+              <label class="text-[10px] text-slate-400 block mb-1">Escritorios (1.20 m³)</label>
+              <input type="number" min="0" value="4" id="inp-desk" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white text-center font-bold">
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+              <label class="text-[10px] text-slate-400 block mb-1">Sillas Giratorias (0.35 m³)</label>
+              <input type="number" min="0" value="8" id="inp-chair" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white text-center font-bold">
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+              <label class="text-[10px] text-slate-400 block mb-1">Bibliotecas / Racks (1.50 m³)</label>
+              <input type="number" min="0" value="2" id="inp-rack" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white text-center font-bold">
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+              <label class="text-[10px] text-slate-400 block mb-1">Monitores / PCs (0.15 m³)</label>
+              <input type="number" min="0" value="10" id="inp-monitor" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white text-center font-bold">
+            </div>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+              <label class="text-[10px] text-slate-400 block mb-1">Heladera / Frigobar (1.20 m³)</label>
+              <input type="number" min="0" value="1" id="inp-fridge" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-white text-center font-bold">
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between bg-slate-950/80 p-3 rounded-xl border border-slate-800 gap-3">
+            <div class="flex items-center gap-6">
+              <div>
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Volumen Neto</span>
+                <span id="calc-net-vol" class="text-sm font-bold text-white font-mono">0.00 m³</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-indigo-400 uppercase tracking-wider block font-semibold">Total con Buffer</span>
+                <span id="calc-total-vol" class="text-base font-extrabold text-indigo-400 font-mono">0.00 m³</span>
+              </div>
+            </div>
+            <button id="btn-apply-estimator-to-move" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow transition">
+              Crear Orden de Mudanza con este Inventario
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Move Orders List -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-white">Órdenes de Mudanza Registradas</h3>
+            <span class="text-xs text-slate-400 font-mono" id="moves-count-badge">0 registradas</span>
+          </div>
+          <div id="moves-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Dynamic cards injected via Sanitizer.safeSetInnerHTML -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: DAMAGES PRE-INSPECTION -->
+      <section id="tab-damages" class="tab-content hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white tracking-tight">Relevamiento de Daños Previos (Anti-Fraude)</h2>
+            <p class="text-xs text-slate-400">Registro fotográfico y peritaje forense antes de iniciar la estiba en camión</p>
+          </div>
+          <button id="btn-add-damage-modal" class="touch-target px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow transition flex items-center gap-1.5">
+            <span>📸</span> <span>Registrar Daño Previo</span>
+          </button>
+        </div>
+
+        <!-- Protocol Guidance Box -->
+        <div class="bg-rose-500/10 border border-rose-500/20 rounded-2xl p-4 text-xs text-rose-200/90 space-y-2">
+          <div class="flex items-center gap-2 font-semibold text-rose-400">
+            <span>🛡️ Protocolo de Responsabilidad Civil de Mudanza</span>
+          </div>
+          <p class="leading-relaxed">
+            Todo mueble, televisor, vidrio o electrodoméstico que presente rayaduras, golpes o faltantes debe ser peritado ante el cliente y sellado criptográficamente en el acta de origen con firma digital. Si el cliente firma el acta, no se admitirán reclamos por daños preexistentes.
+          </p>
+        </div>
+
+        <!-- Damage Records Grid -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-white">Actas de Daños y Relevamiento Fotográfico</h3>
+            <span class="text-xs text-slate-400 font-mono" id="damages-count-badge">0 actas</span>
+          </div>
+          <div id="damages-records-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: QR INVENTORY BULTO LABELS -->
+      <section id="tab-inventory" class="tab-content hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white tracking-tight">Rótulos QR de Bultos & Trazabilidad</h2>
+            <p class="text-xs text-slate-400">Control individual de estiba en origen y descarga en destino sin pérdidas</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <label class="text-xs text-slate-400">Seleccionar Mudanza:</label>
+              <select id="select-move-for-inventory" class="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white">
+                <!-- Injected dynamically -->
+              </select>
+            </div>
+            <div class="flex gap-2">
+              <button id="btn-print-bulto-tags" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium flex items-center gap-1.5 transition">
+                <span>🖨️</span> <span>Imprimir Etiquetas QR</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="bultos-table-container" class="overflow-x-auto">
+            <!-- Dynamic table injected -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: SELF-STORAGE & DUNNING -->
+      <section id="tab-storage" class="tab-content hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white tracking-tight">Guardamuebles & Centinela de Mora</h2>
+            <p class="text-xs text-slate-400">Control de alquiler de bauleras, bloqueo de PIN y ejecución de remate legal</p>
+          </div>
+          <button id="btn-new-storage-contract" class="touch-target px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow transition flex items-center gap-1.5">
+            <span>+</span> <span>Nuevo Alquiler de Baulera</span>
+          </button>
+        </div>
+
+        <!-- Storage Units Grid -->
+        <div id="storage-contracts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamic storage cards -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL: NUEVA MUDANZA -->
+  <div id="modal-new-move" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white">Nueva Orden de Mudanza Corporativa</h3>
+        <button id="btn-close-move-modal" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+      <form id="form-create-move" class="space-y-3">
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Cliente / Razón Social</label>
+          <input type="text" id="inp-move-customer" required placeholder="Ej: Tech Solutions S.A." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Teléfono Móvil (WhatsApp)</label>
+            <input type="text" id="inp-move-phone" required placeholder="Ej: +5491144445555" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white font-mono">
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Presupuesto Acordado (ARS)</label>
+            <input type="number" id="inp-move-price" required min="1000" value="280000" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white font-mono">
+          </div>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Dirección de Origen</label>
+          <input type="text" id="inp-move-origin" required placeholder="Av. Corrientes 1234 Piso 4, CABA" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Dirección de Destino</label>
+          <input type="text" id="inp-move-dest" required placeholder="Av. del Libertador 4567, Vicente López" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Seña Abonada (ARS)</label>
+            <input type="number" id="inp-move-deposit" value="100000" min="0" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white font-mono">
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Vehículo Asignado</label>
+            <select id="inp-move-vehicle" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+              <option value="VAN_SMALL">Furgón Chico (15 m³)</option>
+              <option value="TRUCK_MEDIUM" selected>Camión Mediano (30 m³)</option>
+              <option value="TRUCK_LARGE">Camión Grande Chasis (60 m³)</option>
+            </select>
+          </div>
+        </div>
+        <div class="pt-3 flex justify-end gap-2 border-t border-slate-800">
+          <button type="button" id="btn-cancel-move" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow">Confirmar y Generar Rótulos QR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRAR DAÑO PREVIO -->
+  <div id="modal-new-damage" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-white">Acta Pericial de Daño Preexistente</h3>
+        <button id="btn-close-damage-modal" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+      <form id="form-create-damage" class="space-y-3">
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Mueble / Artículo Afectado</label>
+          <input type="text" id="inp-damage-item" required placeholder="Ej: Escritorio ejecutivo de roble" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Tipo de Daño Encontrado</label>
+            <select id="inp-damage-type" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+              <option value="SURFACE_SCRATCH">Rayón superficial / Raspón</option>
+              <option value="DEEP_DENT">Hendidura profunda / Golpe estructural</option>
+              <option value="CHIPPED_CORNER">Esquina descascarada / Desportillado</option>
+              <option value="CRACKED_GLASS">Vidrio / Pantalla rajada</option>
+              <option value="FABRIC_STAIN_TEAR">Mancha preexistente / Desgarro</option>
+              <option value="LOOSE_JOINT">Pata / Unión tambaleante</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Ubicación Precisa</label>
+            <input type="text" id="inp-damage-loc" required placeholder="Ej: Esquina frontal derecha" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+          </div>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Detalle Pericial Observado</label>
+          <textarea id="inp-damage-desc" rows="2" required placeholder="Detallar estado previo para deslinde de responsabilidad civil..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white"></textarea>
+        </div>
+        <div class="pt-3 flex justify-end gap-2 border-t border-slate-800">
+          <button type="button" id="btn-cancel-damage" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow">Grabar Acta y Testigo Fotográfico</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js?v=8"></script>
+</body>
+</html>
