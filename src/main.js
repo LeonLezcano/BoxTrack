@@ -239,11 +239,11 @@ class BoxTrackApp {
     document.querySelectorAll('.tab-btn').forEach(btn => {
       const isTarget = btn.getAttribute('data-tab') === tabId;
       if (isTarget) {
-        btn.classList.add('text-indigo-400', 'font-semibold');
-        btn.classList.remove('text-slate-400');
+        btn.classList.add('text-[#fbbf24]', 'font-semibold');
+        btn.classList.remove('text-[#9aa4b5]');
       } else {
-        btn.classList.remove('text-indigo-400', 'font-semibold');
-        btn.classList.add('text-slate-400');
+        btn.classList.remove('text-[#fbbf24]', 'font-semibold');
+        btn.classList.add('text-[#9aa4b5]');
       }
     });
 
@@ -383,7 +383,7 @@ class BoxTrackApp {
     if (!tbody) return;
 
     if (this.orders.length === 0) {
-      Sanitizer.safeSetInnerHTML(tbody, '<tr><td colspan="6" class="py-4 text-center text-slate-500">No hay mudanzas activas</td></tr>');
+      Sanitizer.safeSetInnerHTML(tbody, '<tr><td colspan="6" class="py-4 text-center text-[#7d8799]">No hay mudanzas activas</td></tr>');
       return;
     }
 
@@ -392,9 +392,9 @@ class BoxTrackApp {
       const sealPreview = m.cryptoSeal ? `${m.cryptoSeal.slice(0, 12)}...` : 'Pendiente';
       return `
         <tr class="hover:bg-slate-800/40 transition">
-          <td class="py-3 font-mono font-bold text-indigo-400">${Sanitizer.escapeHTML(m.orderId)}</td>
+          <td class="py-3 font-mono font-bold text-[#fbbf24]">${Sanitizer.escapeHTML(m.orderId)}</td>
           <td class="py-3 font-medium text-white">${Sanitizer.escapeHTML(m.customerName)}</td>
-          <td class="py-3 text-slate-400 text-[11px]">${Sanitizer.escapeHTML(m.originAddress)} &rarr; ${Sanitizer.escapeHTML(m.destinationAddress)}</td>
+          <td class="py-3 text-[#9aa4b5] text-[11px]">${Sanitizer.escapeHTML(m.originAddress)} &rarr; ${Sanitizer.escapeHTML(m.destinationAddress)}</td>
           <td class="py-3 font-mono text-cyan-400">${Formatters.formatCubicMeters(m.volumeSummary?.totalM3)}</td>
           <td class="py-3"><span class="${badge.badgeClass}">${badge.label}</span></td>
           <td class="py-3 font-mono text-[10px] text-emerald-400">${Sanitizer.escapeHTML(sealPreview)}</td>
@@ -413,7 +413,7 @@ class BoxTrackApp {
     if (countBadge) countBadge.textContent = `${this.orders.length} registradas`;
 
     if (this.orders.length === 0) {
-      Sanitizer.safeSetInnerHTML(container, '<div class="col-span-2 py-8 text-center text-slate-500">No hay órdenes de mudanza registradas.</div>');
+      Sanitizer.safeSetInnerHTML(container, '<div class="col-span-2 py-8 text-center text-[#7d8799]">No hay órdenes de mudanza registradas.</div>');
       return;
     }
 
@@ -423,10 +423,10 @@ class BoxTrackApp {
       const isInTransit = m.status === 'EN_TRANSITO';
 
       return `
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3 shadow-md">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+        <div class="bg-[#13141a] border border-[#2b3140] rounded-xl p-4 space-y-3 shadow-md">
+          <div class="flex items-center justify-between border-b border-[#2b3140]/80 pb-2">
             <div class="flex items-center gap-2">
-              <span class="font-mono font-bold text-sm text-indigo-400">${Sanitizer.escapeHTML(m.orderId)}</span>
+              <span class="font-mono font-bold text-sm text-[#fbbf24]">${Sanitizer.escapeHTML(m.orderId)}</span>
               <span class="${badge.badgeClass}">${badge.label}</span>
             </div>
             <span class="text-xs font-mono text-cyan-400">${Formatters.formatCubicMeters(m.volumeSummary?.totalM3)}</span>
@@ -434,21 +434,21 @@ class BoxTrackApp {
 
           <div>
             <h4 class="font-bold text-sm text-white">${Sanitizer.escapeHTML(m.customerName)}</h4>
-            <p class="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+            <p class="text-xs text-[#9aa4b5] flex items-center gap-1 mt-0.5">
               <span>📍</span> <span>${Sanitizer.escapeHTML(m.originAddress)}</span>
             </p>
-            <p class="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+            <p class="text-xs text-[#9aa4b5] flex items-center gap-1 mt-0.5">
               <span>🏁</span> <span>${Sanitizer.escapeHTML(m.destinationAddress)}</span>
             </p>
           </div>
 
-          <div class="grid grid-cols-2 gap-2 text-[11px] bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/50">
+          <div class="grid grid-cols-2 gap-2 text-[11px] bg-[#181a21]/60 p-2.5 rounded-lg border border-[#2b3140]/50">
             <div>
-              <span class="text-slate-500 block">Total Cotizado</span>
+              <span class="text-[#7d8799] block">Total Cotizado</span>
               <span class="font-mono font-semibold text-slate-200">${Formatters.formatCurrencyArs(m.pricing?.totalAmount)}</span>
             </div>
             <div>
-              <span class="text-slate-500 block">Saldo Pendiente</span>
+              <span class="text-[#7d8799] block">Saldo Pendiente</span>
               <span class="font-mono font-bold ${m.pricing?.balanceDue > 0 ? 'text-amber-400' : 'text-emerald-400'}">
                 ${Formatters.formatCurrencyArs(m.pricing?.balanceDue)}
               </span>
@@ -462,14 +462,14 @@ class BoxTrackApp {
           ` : ''}
 
           <!-- Action Buttons -->
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/60">
-            <button class="btn-wa-notify px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1" data-order-id="${Sanitizer.escapeHTML(m.orderId)}">
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#2b3140]/60">
+            <button class="btn-wa-notify px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[#c8d0dc] text-xs flex items-center gap-1" data-order-id="${Sanitizer.escapeHTML(m.orderId)}">
               <span>💬</span> <span>Aviso WhatsApp</span>
             </button>
 
             <div class="flex gap-1.5">
               ${!isInTransit && !isDelivered ? `
-                <button class="btn-origin-checkin px-3 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow" data-order-id="${Sanitizer.escapeHTML(m.orderId)}">
+                <button class="btn-origin-checkin px-3 py-1 rounded bg-[#f59e0b] hover:bg-[#d97706] text-white text-xs font-semibold shadow" data-order-id="${Sanitizer.escapeHTML(m.orderId)}">
                   Cargar y Sellar Origen
                 </button>
               ` : ''}
@@ -562,13 +562,13 @@ class BoxTrackApp {
     if (countBadge) countBadge.textContent = `${this.damages.length} actas`;
 
     if (this.damages.length === 0) {
-      Sanitizer.safeSetInnerHTML(grid, '<div class="col-span-3 py-8 text-center text-slate-500">No se han registrado daños previos. Todos los bienes ingresan en óptimas condiciones.</div>');
+      Sanitizer.safeSetInnerHTML(grid, '<div class="col-span-3 py-8 text-center text-[#7d8799]">No se han registrado daños previos. Todos los bienes ingresan en óptimas condiciones.</div>');
       return;
     }
 
     const cardsHtml = this.damages.map(d => `
-      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
-        <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+      <div class="bg-[#13141a] border border-[#2b3140] rounded-xl p-4 space-y-3">
+        <div class="flex items-center justify-between border-b border-[#2b3140]/80 pb-2">
           <span class="font-mono text-xs font-bold text-rose-400">${Sanitizer.escapeHTML(d.damageId)}</span>
           <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-semibold">
             ${Sanitizer.escapeHTML(d.damageLabel || d.damageType)}
@@ -577,16 +577,16 @@ class BoxTrackApp {
 
         <div>
           <h4 class="font-bold text-sm text-white">${Sanitizer.escapeHTML(d.itemName)}</h4>
-          <p class="text-xs text-slate-400 mt-0.5">Ubicación: <strong class="text-slate-300">${Sanitizer.escapeHTML(d.locationOnItem)}</strong></p>
+          <p class="text-xs text-[#9aa4b5] mt-0.5">Ubicación: <strong class="text-[#c8d0dc]">${Sanitizer.escapeHTML(d.locationOnItem)}</strong></p>
         </div>
 
-        <p class="text-xs text-slate-400 bg-slate-900/60 p-2 rounded-lg border border-slate-800/60 italic">
+        <p class="text-xs text-[#9aa4b5] bg-[#181a21]/60 p-2 rounded-lg border border-[#2b3140]/60 italic">
           "${Sanitizer.escapeHTML(d.description)}"
         </p>
 
-        <div class="rounded-lg overflow-hidden border border-slate-800 h-28 bg-slate-900 flex items-center justify-center relative">
+        <div class="rounded-lg overflow-hidden border border-[#2b3140] h-28 bg-[#181a21] flex items-center justify-center relative">
           <img src="${Sanitizer.sanitizeURL(d.photoWitnessUrl)}" alt="Testigo fotográfico" class="w-full h-full object-cover">
-          <span class="absolute bottom-1 right-1 text-[9px] bg-black/70 px-1.5 py-0.5 rounded text-slate-300 font-mono">
+          <span class="absolute bottom-1 right-1 text-[9px] bg-black/70 px-1.5 py-0.5 rounded text-[#c8d0dc] font-mono">
             Testigo Pericial 📸
           </span>
         </div>
@@ -615,13 +615,13 @@ class BoxTrackApp {
 
     const order = this.orders.find(o => o.orderId === this.selectedOrderId);
     if (!order || !order.items || order.items.length === 0) {
-      Sanitizer.safeSetInnerHTML(container, '<div class="py-6 text-center text-slate-500">Seleccione una mudanza para visualizar los bultos rotulados con QR.</div>');
+      Sanitizer.safeSetInnerHTML(container, '<div class="py-6 text-center text-[#7d8799]">Seleccione una mudanza para visualizar los bultos rotulados con QR.</div>');
       return;
     }
 
     const tableHtml = `
-      <table class="w-full text-left text-xs text-slate-300">
-        <thead class="text-slate-400 border-b border-slate-800 text-[11px] uppercase tracking-wider font-mono">
+      <table class="w-full text-left text-xs text-[#c8d0dc]">
+        <thead class="text-[#9aa4b5] border-b border-[#2b3140] text-[11px] uppercase tracking-wider font-mono">
           <tr>
             <th class="pb-2">Rótulo QR</th>
             <th class="pb-2">Ítem Inventariado</th>
@@ -633,19 +633,19 @@ class BoxTrackApp {
         <tbody class="divide-y divide-slate-800/60 font-sans">
           ${order.items.map(b => `
             <tr class="hover:bg-slate-800/40 transition">
-              <td class="py-2.5 font-mono font-bold text-indigo-400 flex items-center gap-2">
+              <td class="py-2.5 font-mono font-bold text-[#fbbf24] flex items-center gap-2">
                 <span>📦</span>
                 <span>${Sanitizer.escapeHTML(b.bultoCode)}</span>
               </td>
               <td class="py-2.5 font-medium text-white">${Sanitizer.escapeHTML(b.name)}</td>
-              <td class="py-2.5 text-slate-400">${Sanitizer.escapeHTML(b.room || 'General')}</td>
+              <td class="py-2.5 text-[#9aa4b5]">${Sanitizer.escapeHTML(b.room || 'General')}</td>
               <td class="py-2.5">
-                <span class="inline-flex items-center gap-1 text-[11px] font-semibold ${b.loadedInTruck ? 'text-emerald-400' : 'text-slate-500'}">
+                <span class="inline-flex items-center gap-1 text-[11px] font-semibold ${b.loadedInTruck ? 'text-emerald-400' : 'text-[#7d8799]'}">
                   ${b.loadedInTruck ? '✔ Estibado' : '⏳ Pendiente'}
                 </span>
               </td>
               <td class="py-2.5">
-                <span class="inline-flex items-center gap-1 text-[11px] font-semibold ${b.deliveredInDestination ? 'text-emerald-400' : 'text-slate-500'}">
+                <span class="inline-flex items-center gap-1 text-[11px] font-semibold ${b.deliveredInDestination ? 'text-emerald-400' : 'text-[#7d8799]'}">
                   ${b.deliveredInDestination ? '✔ Entregado' : '⏳ En Tránsito'}
                 </span>
               </td>
@@ -663,7 +663,7 @@ class BoxTrackApp {
     if (!container) return;
 
     if (this.contracts.length === 0) {
-      Sanitizer.safeSetInnerHTML(container, '<div class="col-span-3 py-8 text-center text-slate-500">No hay contratos de bauleras activos.</div>');
+      Sanitizer.safeSetInnerHTML(container, '<div class="col-span-3 py-8 text-center text-[#7d8799]">No hay contratos de bauleras activos.</div>');
       return;
     }
 
@@ -673,35 +673,35 @@ class BoxTrackApp {
       const isBlocked = !dunning.accessPinAllowed;
 
       return `
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3 shadow-md">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-2">
+        <div class="bg-[#13141a] border border-[#2b3140] rounded-xl p-4 space-y-3 shadow-md">
+          <div class="flex items-center justify-between border-b border-[#2b3140]/80 pb-2">
             <div class="flex items-center gap-2">
               <span class="font-mono font-bold text-base text-emerald-400">${Sanitizer.escapeHTML(c.unitCode)}</span>
               <span class="${badge.badgeClass}">${badge.label}</span>
             </div>
-            <span class="text-xs font-mono text-slate-400">${Formatters.formatCubicMeters(c.capacityM3)}</span>
+            <span class="text-xs font-mono text-[#9aa4b5]">${Formatters.formatCubicMeters(c.capacityM3)}</span>
           </div>
 
           <div>
             <h4 class="font-bold text-sm text-white">${Sanitizer.escapeHTML(c.customerName)}</h4>
-            <p class="text-xs text-slate-400 mt-0.5">Vencimiento: <strong class="text-slate-200 font-mono">${Formatters.formatDate(c.nextDueDate)}</strong></p>
+            <p class="text-xs text-[#9aa4b5] mt-0.5">Vencimiento: <strong class="text-slate-200 font-mono">${Formatters.formatDate(c.nextDueDate)}</strong></p>
           </div>
 
-          <div class="grid grid-cols-2 gap-2 text-[11px] bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/50">
+          <div class="grid grid-cols-2 gap-2 text-[11px] bg-[#181a21]/60 p-2.5 rounded-lg border border-[#2b3140]/50">
             <div>
-              <span class="text-slate-500 block">Alquiler Mensual</span>
+              <span class="text-[#7d8799] block">Alquiler Mensual</span>
               <span class="font-mono font-semibold text-slate-200">${Formatters.formatCurrencyArs(c.monthlyFeeArs)}</span>
             </div>
             <div>
-              <span class="text-slate-500 block">Días de Atraso</span>
+              <span class="text-[#7d8799] block">Días de Atraso</span>
               <span class="font-mono font-bold ${dunning.daysOverdue > 0 ? 'text-rose-400' : 'text-emerald-400'}">
                 ${dunning.daysOverdue || 0} días
               </span>
             </div>
           </div>
 
-          <div class="flex items-center justify-between bg-slate-900/80 p-2 rounded-lg border border-slate-800 text-xs">
-            <span class="text-slate-400">Estado de Acceso:</span>
+          <div class="flex items-center justify-between bg-[#181a21]/80 p-2 rounded-lg border border-[#2b3140] text-xs">
+            <span class="text-[#9aa4b5]">Estado de Acceso:</span>
             <span class="font-mono font-extrabold ${isBlocked ? 'text-rose-400' : 'text-cyan-400'}">
               ${isBlocked ? '⛔ PIN BLOQUEADO' : '🔑 PIN HABILITADO'}
             </span>
@@ -714,8 +714,8 @@ class BoxTrackApp {
             </div>
           ` : ''}
 
-          <div class="pt-2 border-t border-slate-800/60 flex justify-end">
-            <button class="btn-wa-storage px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1.5" data-contract-id="${Sanitizer.escapeHTML(c.contractId)}">
+          <div class="pt-2 border-t border-[#2b3140]/60 flex justify-end">
+            <button class="btn-wa-storage px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-[#c8d0dc] text-xs flex items-center gap-1.5" data-contract-id="${Sanitizer.escapeHTML(c.contractId)}">
               <span>💬</span> <span>Aviso WhatsApp de Cobranza</span>
             </button>
           </div>

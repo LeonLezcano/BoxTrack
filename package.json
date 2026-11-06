@@ -1,6 +1,6 @@
 {
   "name": "boxtrack",
-  "version": "1.0.00",
+  "version": "1.0.01",
   "description": "BoxTrack - Mudanzas Corporativas, Inventario QR por Bulto & Self-Storage",
   "type": "module",
   "scripts": {
