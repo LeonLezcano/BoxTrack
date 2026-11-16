@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" class="h-full bg-[#111317] text-[#e8ecf2]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BoxTrack v1.0.01 — Gestión Forense de Mudanzas Corporativas y Guardamuebles</title>
+  <title>BoxTrack v1.0.01 â€” GestiÃ³n Forense de Mudanzas Corporativas y Guardamuebles</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><path d='M21 16.5l-9 5.25-9-5.25V7.5l9-5.25 9 5.25v9z'/></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -23,7 +23,7 @@
   <header class="no-print bg-[#181b22] border-b border-[#2d3444] sticky top-0 z-40 px-4 py-3 flex items-center justify-between shadow-md">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-lg bg-[#2b220d] border border-[#594314] flex items-center justify-center text-white font-black text-xl">
-        📦
+        ðŸ“¦
       </div>
       <div>
         <div class="flex items-center gap-2">
@@ -31,14 +31,14 @@
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#2c220c] text-[#fbbf24] border border-[#594314] font-bold">v1.0.01</span>
           <span id="network-badge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#102a1b] text-[#4ade80] border border-[#1b4d30] font-bold">ONLINE</span>
         </div>
-        <p class="text-xs text-[#9aa4b5] hidden sm:block">Mudanzas Corporativas, Cubaje, Fotos Pre-Daño, Rótulos QR y Guardamuebles</p>
+        <p class="text-xs text-[#9aa4b5] hidden sm:block">Mudanzas Corporativas, Cubaje, Fotos Pre-DaÃ±o, RÃ³tulos QR y Guardamuebles</p>
       </div>
     </div>
 
     <!-- Quick Action Buttons -->
     <div class="flex items-center gap-2">
       <button id="btn-export-csv" class="no-print touch-target px-3.5 py-2 rounded-lg bg-[#222630] hover:bg-[#2c3240] text-[#dce2ec] text-xs font-semibold border border-[#343b4c] flex items-center gap-1.5 transition">
-        <span>📑</span> <span class="hidden md:inline">Exportar CSV</span>
+        <span>ðŸ“‘</span> <span class="hidden md:inline">Exportar CSV</span>
       </button>
       <button id="btn-new-move" class="no-print touch-target px-4 py-2 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] text-[#0f1115] text-xs font-black shadow flex items-center gap-1.5 transition">
         <span>+</span> <span>Nueva Mudanza</span>
@@ -49,19 +49,19 @@
   <!-- Mobile Bottom Tab Navigation -->
   <nav class="no-print sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#15171d]/95 backdrop-blur border-t border-[#2d3444] flex justify-around py-2 px-1">
     <button data-tab="dashboard" class="tab-btn flex flex-col items-center text-xs text-[#9aa4b5] hover:text-white px-2 py-1 active:scale-95">
-      <span class="text-lg">📊</span>
-      <span>Métricas</span>
+      <span class="text-lg">ðŸ“Š</span>
+      <span>MÃ©tricas</span>
     </button>
     <button data-tab="moves" class="tab-btn flex flex-col items-center text-xs text-[#fbbf24] font-bold px-2 py-1 active:scale-95">
-      <span class="text-lg">🚚</span>
+      <span class="text-lg">ðŸšš</span>
       <span>Mudanzas</span>
     </button>
     <button data-tab="damages" class="tab-btn flex flex-col items-center text-xs text-[#9aa4b5] hover:text-white px-2 py-1 active:scale-95">
-      <span class="text-lg">📸</span>
-      <span>Pre-Daño</span>
+      <span class="text-lg">ðŸ“¸</span>
+      <span>Pre-DaÃ±o</span>
     </button>
     <button data-tab="storage" class="tab-btn flex flex-col items-center text-xs text-[#9aa4b5] hover:text-white px-2 py-1 active:scale-95">
-      <span class="text-lg">🏢</span>
+      <span class="text-lg">ðŸ¢</span>
       <span>Bauleras</span>
     </button>
   </nav>
@@ -70,27 +70,27 @@
   <div class="flex-1 flex overflow-hidden">
     <!-- Desktop Sidebar -->
     <aside class="no-print hidden sm:flex flex-col w-60 bg-[#16181f] border-r border-[#2a303f] p-4 gap-2">
-      <div class="text-[11px] font-mono uppercase tracking-wider text-[#9aa4b5] px-3 py-1 font-bold">Logística de Carga</div>
+      <div class="text-[11px] font-mono uppercase tracking-wider text-[#9aa4b5] px-3 py-1 font-bold">LogÃ­stica de Carga</div>
       <button data-tab="dashboard" class="tab-btn touch-target flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium text-[#c8d0dc] hover:bg-[#20242e] hover:text-white transition text-left">
-        <span class="text-base">📊</span> <span>Dashboard General</span>
+        <span class="text-base">ðŸ“Š</span> <span>Dashboard General</span>
       </button>
       <button data-tab="moves" class="tab-btn touch-target flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold text-[#fbbf24] bg-[#262010] border border-[#523e12] transition text-left">
-        <span class="text-base">🚚</span> <span>Mudanzas & Cubaje</span>
+        <span class="text-base">ðŸšš</span> <span>Mudanzas & Cubaje</span>
       </button>
       <button data-tab="damages" class="tab-btn touch-target flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium text-[#c8d0dc] hover:bg-[#20242e] hover:text-white transition text-left">
-        <span class="text-base">📸</span> <span>Relevamiento Pre-Daño</span>
+        <span class="text-base">ðŸ“¸</span> <span>Relevamiento Pre-DaÃ±o</span>
       </button>
       <button data-tab="inventory" class="tab-btn touch-target flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium text-[#c8d0dc] hover:bg-[#20242e] hover:text-white transition text-left">
-        <span class="text-base">🏷️</span> <span>Rótulos QR de Bultos</span>
+        <span class="text-base">ðŸ·ï¸</span> <span>RÃ³tulos QR de Bultos</span>
       </button>
       <button data-tab="storage" class="tab-btn touch-target flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium text-[#c8d0dc] hover:bg-[#20242e] hover:text-white transition text-left">
-        <span class="text-base">🏢</span> <span>Guardamuebles & Mora</span>
+        <span class="text-base">ðŸ¢</span> <span>Guardamuebles & Mora</span>
       </button>
 
       <div class="mt-auto pt-4 border-t border-[#2a303f]">
         <div class="bg-[#1c2029] rounded-lg p-3 border border-[#2e3546] text-xs text-[#9aa4b5] flex flex-col gap-1">
           <div class="flex items-center justify-between text-[#e8ecf2] font-semibold">
-            <span>Sello Criptográfico</span>
+            <span>Sello CriptogrÃ¡fico</span>
             <span class="text-[#4ade80] font-mono">SHA-256</span>
           </div>
           <p class="text-[11px] text-[#9aa4b5]">Hash inmutable en actas de carga y entrega final ePOD.</p>
@@ -106,11 +106,11 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-l-4 border-[#f59e0b] pl-3">
           <div>
             <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">Centro de Control de Operaciones</h2>
-            <p class="text-xs text-[#9aa4b5]">Monitoreo forense de traslados corporativos y ocupación de bauleras</p>
+            <p class="text-xs text-[#9aa4b5]">Monitoreo forense de traslados corporativos y ocupaciÃ³n de bauleras</p>
           </div>
           <div class="flex gap-2">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold bg-[#2b220c] text-[#fbbf24] border border-[#594314]">
-              🛡️ Protocolo Pre-Daño Activo
+              ðŸ›¡ï¸ Protocolo Pre-DaÃ±o Activo
             </span>
           </div>
         </div>
@@ -123,14 +123,14 @@
               <span id="metric-active-moves" class="text-3xl font-black text-[#fbbf24] font-mono">0</span>
               <span class="text-xs text-[#9aa4b5]">activas</span>
             </div>
-            <span class="text-[11px] text-[#7d8799]">Flotas en tránsito y origen</span>
+            <span class="text-[11px] text-[#7d8799]">Flotas en trÃ¡nsito y origen</span>
           </div>
 
           <div class="bg-[#181a21] border border-[#2b3140] rounded-xl p-4 flex flex-col gap-1">
             <span class="text-xs font-semibold uppercase tracking-wider text-[#9aa4b5]">Volumen Trasladado</span>
             <div class="flex items-baseline gap-2 mt-1">
               <span id="metric-total-m3" class="text-3xl font-black text-[#38bdf8] font-mono">0.00</span>
-              <span class="text-xs text-[#9aa4b5]">m³</span>
+              <span class="text-xs text-[#9aa4b5]">mÂ³</span>
             </div>
             <span class="text-[11px] text-[#7d8799]">Total neto inventariado</span>
           </div>
@@ -157,7 +157,7 @@
         <!-- Recent Move Operations Table -->
         <div class="bg-[#181a21] border border-[#2b3140] rounded-xl p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-[#2b3140] pb-3">
-            <h3 class="text-sm font-bold text-[#f3f5f8]">Últimas Operaciones de Traslado</h3>
+            <h3 class="text-sm font-bold text-[#f3f5f8]">Ãšltimas Operaciones de Traslado</h3>
             <span class="text-xs text-[#fbbf24] font-mono font-bold">Tiempo Real</span>
           </div>
           <div class="overflow-x-auto">
@@ -184,11 +184,11 @@
       <section id="tab-moves" class="tab-content space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-l-4 border-[#f59e0b] pl-3">
           <div>
-            <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">Gestión de Mudanzas & Cubaje</h2>
-            <p class="text-xs text-[#9aa4b5]">Calculadora de volumen volumétrico m³, asignación de camión y control de bultos</p>
+            <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">GestiÃ³n de Mudanzas & Cubaje</h2>
+            <p class="text-xs text-[#9aa4b5]">Calculadora de volumen volumÃ©trico mÂ³, asignaciÃ³n de camiÃ³n y control de bultos</p>
           </div>
           <button id="btn-toggle-estimator" class="touch-target px-3.5 py-2 rounded-lg bg-[#272111] text-[#fbbf24] hover:bg-[#382d13] border border-[#5c4514] text-xs font-bold flex items-center gap-1.5 transition">
-            <span>📐</span> <span>Calculador de Cubaje Rápido</span>
+            <span>ðŸ“</span> <span>Calculador de Cubaje RÃ¡pido</span>
           </button>
         </div>
 
@@ -196,35 +196,35 @@
         <div id="volume-estimator-card" class="bg-[#181a21] border border-[#3b331f] rounded-xl p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-[#2b3140] pb-3">
             <div class="flex items-center gap-2">
-              <span class="text-[#fbbf24] font-bold text-sm">📐 Estimador Automático de Mudanza</span>
+              <span class="text-[#fbbf24] font-bold text-sm">ðŸ“ Estimador AutomÃ¡tico de Mudanza</span>
               <span class="text-[11px] px-2 py-0.5 rounded bg-[#2b220c] text-[#fbbf24] border border-[#594314] font-mono font-bold">+10% Buffer de Estiba</span>
             </div>
-            <span id="calc-suggested-vehicle" class="text-xs font-bold px-2.5 py-1 rounded bg-[#132733] text-[#38bdf8] border border-[#1b435b]">Camión Sugerido: -</span>
+            <span id="calc-suggested-vehicle" class="text-xs font-bold px-2.5 py-1 rounded bg-[#132733] text-[#38bdf8] border border-[#1b435b]">CamiÃ³n Sugerido: -</span>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
             <div class="flex flex-col gap-1">
-              <label class="text-xs text-[#9aa4b5] block font-medium">Cajas Estándar (0.10 m³)</label>
+              <label class="text-xs text-[#9aa4b5] block font-medium">Cajas EstÃ¡ndar (0.10 mÂ³)</label>
               <input type="number" min="0" value="25" id="inp-box-std" class="w-full bg-[#14161d] border border-[#373f52] rounded px-2.5 py-1.5 text-sm text-white text-center font-bold">
             </div>
             <div class="flex flex-col gap-1">
-              <label class="text-xs text-[#9aa4b5] block font-medium">Escritorios (1.20 m³)</label>
+              <label class="text-xs text-[#9aa4b5] block font-medium">Escritorios (1.20 mÂ³)</label>
               <input type="number" min="0" value="4" id="inp-desk" class="w-full bg-[#14161d] border border-[#373f52] rounded px-2.5 py-1.5 text-sm text-white text-center font-bold">
             </div>
             <div class="flex flex-col gap-1">
-              <label class="text-xs text-[#9aa4b5] block font-medium">Sillas Giratorias (0.35 m³)</label>
+              <label class="text-xs text-[#9aa4b5] block font-medium">Sillas Giratorias (0.35 mÂ³)</label>
               <input type="number" min="0" value="8" id="inp-chair" class="w-full bg-[#14161d] border border-[#373f52] rounded px-2.5 py-1.5 text-sm text-white text-center font-bold">
             </div>
             <div class="flex flex-col gap-1">
-              <label class="text-xs text-[#9aa4b5] block font-medium">Bibliotecas / Racks (1.50 m³)</label>
+              <label class="text-xs text-[#9aa4b5] block font-medium">Bibliotecas / Racks (1.50 mÂ³)</label>
               <input type="number" min="0" value="2" id="inp-rack" class="w-full bg-[#14161d] border border-[#373f52] rounded px-2.5 py-1.5 text-sm text-white text-center font-bold">
             </div>
             <div class="flex flex-col gap-1">
-              <label class="text-xs text-[#9aa4b5] block font-medium">Monitores / PCs (0.15 m³)</label>
+              <label class="text-xs text-[#9aa4b5] block font-medium">Monitores / PCs (0.15 mÂ³)</label>
               <input type="number" min="0" value="10" id="inp-monitor" class="w-full bg-[#14161d] border border-[#373f52] rounded px-2.5 py-1.5 text-sm text-white text-center font-bold">
             </div>
             <div class="flex flex-col gap-1">
-              <label class="text-xs text-[#9aa4b5] block font-medium">Heladera / Frigobar (1.20 m³)</label>
+              <label class="text-xs text-[#9aa4b5] block font-medium">Heladera / Frigobar (1.20 mÂ³)</label>
               <input type="number" min="0" value="1" id="inp-fridge" class="w-full bg-[#14161d] border border-[#373f52] rounded px-2.5 py-1.5 text-sm text-white text-center font-bold">
             </div>
           </div>
@@ -233,11 +233,11 @@
             <div class="flex items-center gap-6">
               <div>
                 <span class="text-[11px] text-[#9aa4b5] uppercase tracking-wider block font-bold">Volumen Neto</span>
-                <span id="calc-net-vol" class="text-sm font-black text-white font-mono">0.00 m³</span>
+                <span id="calc-net-vol" class="text-sm font-black text-white font-mono">0.00 mÂ³</span>
               </div>
               <div>
                 <span class="text-[11px] text-[#fbbf24] uppercase tracking-wider block font-bold">Total con Buffer</span>
-                <span id="calc-total-vol" class="text-lg font-black text-[#fbbf24] font-mono">0.00 m³</span>
+                <span id="calc-total-vol" class="text-lg font-black text-[#fbbf24] font-mono">0.00 mÂ³</span>
               </div>
             </div>
             <button id="btn-apply-estimator-to-move" class="px-4 py-2 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] text-[#0f1115] text-xs font-black shadow transition">
@@ -249,7 +249,7 @@
         <!-- Active Move Orders List -->
         <div class="bg-[#181a21] border border-[#2b3140] rounded-xl p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-[#2b3140] pb-3">
-            <h3 class="text-sm font-bold text-[#f3f5f8]">Órdenes de Mudanza Registradas</h3>
+            <h3 class="text-sm font-bold text-[#f3f5f8]">Ã“rdenes de Mudanza Registradas</h3>
             <span class="text-xs text-[#fbbf24] font-mono font-bold" id="moves-count-badge">0 registradas</span>
           </div>
           <div id="moves-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -262,28 +262,28 @@
       <section id="tab-damages" class="tab-content hidden space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-l-4 border-[#f43f5e] pl-3">
           <div>
-            <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">Relevamiento de Daños Previos (Anti-Fraude)</h2>
-            <p class="text-xs text-[#9aa4b5]">Registro fotográfico y peritaje forense antes de iniciar la estiba en camión</p>
+            <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">Relevamiento de DaÃ±os Previos (Anti-Fraude)</h2>
+            <p class="text-xs text-[#9aa4b5]">Registro fotogrÃ¡fico y peritaje forense antes de iniciar la estiba en camiÃ³n</p>
           </div>
           <button id="btn-add-damage-modal" class="touch-target px-3.5 py-2 rounded-lg bg-[#e11d48] hover:bg-[#be123c] text-white text-xs font-bold shadow transition flex items-center gap-1.5">
-            <span>📸</span> <span>Registrar Daño Previo</span>
+            <span>ðŸ“¸</span> <span>Registrar DaÃ±o Previo</span>
           </button>
         </div>
 
         <!-- Protocol Guidance Box -->
         <div class="bg-[#291319] border border-[#57212e] rounded-xl p-4 text-xs text-[#fecdd3] space-y-2">
           <div class="flex items-center gap-2 font-bold text-[#fb7185]">
-            <span>🛡️ Protocolo de Responsabilidad Civil de Mudanza</span>
+            <span>ðŸ›¡ï¸ Protocolo de Responsabilidad Civil de Mudanza</span>
           </div>
           <p class="leading-relaxed text-[#fca5a5]">
-            Todo mueble, televisor, vidrio o electrodoméstico que presente rayaduras, golpes o faltantes debe ser peritado ante el cliente y sellado criptográficamente en el acta de origen con firma digital. Si el cliente firma el acta, no se admitirán reclamos por daños preexistentes.
+            Todo mueble, televisor, vidrio o electrodomÃ©stico que presente rayaduras, golpes o faltantes debe ser peritado ante el cliente y sellado criptogrÃ¡ficamente en el acta de origen con firma digital. Si el cliente firma el acta, no se admitirÃ¡n reclamos por daÃ±os preexistentes.
           </p>
         </div>
 
         <!-- Damage Records Grid -->
         <div class="bg-[#181a21] border border-[#2b3140] rounded-xl p-5 space-y-4">
           <div class="flex items-center justify-between border-b border-[#2b3140] pb-3">
-            <h3 class="text-sm font-bold text-[#f3f5f8]">Actas de Daños y Relevamiento Fotográfico</h3>
+            <h3 class="text-sm font-bold text-[#f3f5f8]">Actas de DaÃ±os y Relevamiento FotogrÃ¡fico</h3>
             <span class="text-xs text-[#fb7185] font-mono font-bold" id="damages-count-badge">0 actas</span>
           </div>
           <div id="damages-records-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -296,8 +296,8 @@
       <section id="tab-inventory" class="tab-content hidden space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-l-4 border-[#fbbf24] pl-3">
           <div>
-            <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">Rótulos QR de Bultos & Trazabilidad</h2>
-            <p class="text-xs text-[#9aa4b5]">Control individual de estiba en origen y descarga en destino sin pérdidas</p>
+            <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">RÃ³tulos QR de Bultos & Trazabilidad</h2>
+            <p class="text-xs text-[#9aa4b5]">Control individual de estiba en origen y descarga en destino sin pÃ©rdidas</p>
           </div>
         </div>
 
@@ -311,7 +311,7 @@
             </div>
             <div class="flex gap-2">
               <button id="btn-print-bulto-tags" class="px-3.5 py-1.5 rounded-lg bg-[#222630] hover:bg-[#2c3240] text-[#dce2ec] border border-[#343b4c] text-xs font-semibold flex items-center gap-1.5 transition">
-                <span>🖨️</span> <span>Imprimir Etiquetas QR</span>
+                <span>ðŸ–¨ï¸</span> <span>Imprimir Etiquetas QR</span>
               </button>
             </div>
           </div>
@@ -327,7 +327,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-l-4 border-[#38bdf8] pl-3">
           <div>
             <h2 class="text-2xl font-black text-[#f3f5f8] tracking-tight">Guardamuebles & Centinela de Mora</h2>
-            <p class="text-xs text-[#9aa4b5]">Control de alquiler de bauleras, bloqueo de PIN y ejecución de remate legal</p>
+            <p class="text-xs text-[#9aa4b5]">Control de alquiler de bauleras, bloqueo de PIN y ejecuciÃ³n de remate legal</p>
           </div>
           <button id="btn-new-storage-contract" class="touch-target px-3.5 py-2 rounded-lg bg-[#0284c7] hover:bg-[#0369a1] text-white text-xs font-bold shadow transition flex items-center gap-1.5">
             <span>+</span> <span>Nuevo Alquiler de Baulera</span>
@@ -347,16 +347,16 @@
     <div class="bg-[#181a21] border border-[#2b3140] rounded-xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b border-[#2b3140] pb-3">
         <h3 class="text-base font-bold text-white">Nueva Orden de Mudanza Corporativa</h3>
-        <button id="btn-close-move-modal" class="text-[#9aa4b5] hover:text-white text-xl font-bold">✕</button>
+        <button id="btn-close-move-modal" class="text-[#9aa4b5] hover:text-white text-xl font-bold">âœ•</button>
       </div>
       <form id="form-create-move" class="space-y-3">
         <div>
-          <label class="text-xs text-[#9aa4b5] block mb-1">Cliente / Razón Social</label>
+          <label class="text-xs text-[#9aa4b5] block mb-1">Cliente / RazÃ³n Social</label>
           <input type="text" id="inp-move-customer" required placeholder="Ej: Tech Solutions S.A." class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="text-xs text-[#9aa4b5] block mb-1">Teléfono Móvil (WhatsApp)</label>
+            <label class="text-xs text-[#9aa4b5] block mb-1">TelÃ©fono MÃ³vil (WhatsApp)</label>
             <input type="text" id="inp-move-phone" required placeholder="Ej: +5491144445555" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white font-mono">
           </div>
           <div>
@@ -365,61 +365,61 @@
           </div>
         </div>
         <div>
-          <label class="text-xs text-[#9aa4b5] block mb-1">Dirección de Origen</label>
+          <label class="text-xs text-[#9aa4b5] block mb-1">DirecciÃ³n de Origen</label>
           <input type="text" id="inp-move-origin" required placeholder="Av. Corrientes 1234 Piso 4, CABA" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
         </div>
         <div>
-          <label class="text-xs text-[#9aa4b5] block mb-1">Dirección de Destino</label>
-          <input type="text" id="inp-move-dest" required placeholder="Av. del Libertador 4567, Vicente López" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
+          <label class="text-xs text-[#9aa4b5] block mb-1">DirecciÃ³n de Destino</label>
+          <input type="text" id="inp-move-dest" required placeholder="Av. del Libertador 4567, Vicente LÃ³pez" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="text-xs text-[#9aa4b5] block mb-1">Seña Abonada (ARS)</label>
+            <label class="text-xs text-[#9aa4b5] block mb-1">SeÃ±a Abonada (ARS)</label>
             <input type="number" id="inp-move-deposit" value="100000" min="0" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white font-mono">
           </div>
           <div>
-            <label class="text-xs text-[#9aa4b5] block mb-1">Vehículo Asignado</label>
+            <label class="text-xs text-[#9aa4b5] block mb-1">VehÃ­culo Asignado</label>
             <select id="inp-move-vehicle" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
-              <option value="VAN_SMALL">Furgón Chico (15 m³)</option>
-              <option value="TRUCK_MEDIUM" selected>Camión Mediano (30 m³)</option>
-              <option value="TRUCK_LARGE">Camión Grande Chasis (60 m³)</option>
+              <option value="VAN_SMALL">FurgÃ³n Chico (15 mÂ³)</option>
+              <option value="TRUCK_MEDIUM" selected>CamiÃ³n Mediano (30 mÂ³)</option>
+              <option value="TRUCK_LARGE">CamiÃ³n Grande Chasis (60 mÂ³)</option>
             </select>
           </div>
         </div>
         <div class="pt-3 flex justify-end gap-2 border-t border-[#2b3140]">
           <button type="button" id="btn-cancel-move" class="px-4 py-2 rounded-lg bg-[#222630] hover:bg-[#2c3240] text-[#c8d0dc] text-xs font-medium">Cancelar</button>
-          <button type="submit" class="px-4 py-2 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] text-[#0f1115] text-xs font-black shadow">Confirmar y Generar Rótulos QR</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-[#f59e0b] hover:bg-[#d97706] text-[#0f1115] text-xs font-black shadow">Confirmar y Generar RÃ³tulos QR</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL: REGISTRAR DAÑO PREVIO -->
+  <!-- MODAL: REGISTRAR DAÃ‘O PREVIO -->
   <div id="modal-new-damage" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
     <div class="bg-[#181a21] border border-[#2b3140] rounded-xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b border-[#2b3140] pb-3">
-        <h3 class="text-base font-bold text-white">Acta Pericial de Daño Preexistente</h3>
-        <button id="btn-close-damage-modal" class="text-[#9aa4b5] hover:text-white text-xl font-bold">✕</button>
+        <h3 class="text-base font-bold text-white">Acta Pericial de DaÃ±o Preexistente</h3>
+        <button id="btn-close-damage-modal" class="text-[#9aa4b5] hover:text-white text-xl font-bold">âœ•</button>
       </div>
       <form id="form-create-damage" class="space-y-3">
         <div>
-          <label class="text-xs text-[#9aa4b5] block mb-1">Mueble / Artículo Afectado</label>
+          <label class="text-xs text-[#9aa4b5] block mb-1">Mueble / ArtÃ­culo Afectado</label>
           <input type="text" id="inp-damage-item" required placeholder="Ej: Escritorio ejecutivo de roble" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="text-xs text-[#9aa4b5] block mb-1">Tipo de Daño Encontrado</label>
+            <label class="text-xs text-[#9aa4b5] block mb-1">Tipo de DaÃ±o Encontrado</label>
             <select id="inp-damage-type" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
-              <option value="SURFACE_SCRATCH">Rayón superficial / Raspón</option>
+              <option value="SURFACE_SCRATCH">RayÃ³n superficial / RaspÃ³n</option>
               <option value="DEEP_DENT">Hendidura profunda / Golpe estructural</option>
               <option value="CHIPPED_CORNER">Esquina descascarada / Desportillado</option>
               <option value="CRACKED_GLASS">Vidrio / Pantalla rajada</option>
               <option value="FABRIC_STAIN_TEAR">Mancha preexistente / Desgarro</option>
-              <option value="LOOSE_JOINT">Pata / Unión tambaleante</option>
+              <option value="LOOSE_JOINT">Pata / UniÃ³n tambaleante</option>
             </select>
           </div>
           <div>
-            <label class="text-xs text-[#9aa4b5] block mb-1">Ubicación Precisa</label>
+            <label class="text-xs text-[#9aa4b5] block mb-1">UbicaciÃ³n Precisa</label>
             <input type="text" id="inp-damage-loc" required placeholder="Ej: Esquina frontal derecha" class="w-full bg-[#14161d] border border-[#343b4c] rounded px-3 py-2 text-xs text-white">
           </div>
         </div>
@@ -429,12 +429,20 @@
         </div>
         <div class="pt-3 flex justify-end gap-2 border-t border-[#2b3140]">
           <button type="button" id="btn-cancel-damage" class="px-4 py-2 rounded-lg bg-[#222630] hover:bg-[#2c3240] text-[#c8d0dc] text-xs font-medium">Cancelar</button>
-          <button type="submit" class="px-4 py-2 rounded-lg bg-[#e11d48] hover:bg-[#be123c] text-white text-xs font-bold shadow">Grabar Acta y Testigo Fotográfico</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-[#e11d48] hover:bg-[#be123c] text-white text-xs font-bold shadow">Grabar Acta y Testigo FotogrÃ¡fico</button>
         </div>
       </form>
     </div>
   </div>
 
   <script type="module" src="src/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
+
