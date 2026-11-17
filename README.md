@@ -1,6 +1,6 @@
-# 📦 BoxTrack — Mudanzas Corporativas, Cubaje, Fotos Pre-Daño, Rótulos QR y Guardamuebles
+# BoxTrack - Mudanzas Corporativas, Cubaje, Fotos Pre-Daño, Rótulos QR y Guardamuebles
 
-> **Versión:** `v1.0.00`  
+> **Versión:** `v1.0.02`  
 > **Arquetipo:** Enterprise Logistics & Self-Storage Management  
 > **Estándar:** AiAppFactory Invariants, Pure Forensic Cryptographic Seals (SHA-256) & Zero-Sink DOM Security
 
@@ -43,7 +43,7 @@ El sistema digitaliza de punta a punta la cadena de custodia forense de bienes t
 
 ---
 
-## 🧪 Arnés de Pruebas Multi-Capa (69 Tests — 100% PASS)
+## 🧪 Arnés de Pruebas Multi-Capa (75 Tests - 100% PASS)
 
 El proyecto cuenta con una batería de pruebas automatizadas en 5 capas:
 
@@ -75,7 +75,8 @@ pnpm run security:full
 
 ---
 
-## 📱 Operatividad Móvil Verificada (Playwright MCP)
+## 📱 Operatividad Móvil, Accesibilidad & Offline-First (`v1.0.02`)
 
-- Probado bajo viewport de smartphone (`393x852` px) con áreas táctiles $\ge 44 \times 44$ px.
-- **Tolerancia Cero en Consola:** **0 Errores** reportados durante la navegación y ciclo de vida de operaciones.
+- **Diseño y Accesibilidad (WCAG AA + Teclado):** Sistema visual documentado en [DESIGN.md](./DESIGN.md) con contraste >= 4.5:1, jerarquía semántica (`h1 > h2 > h3`), anillos `:focus-visible`, cierre con `Escape` y `role="dialog"` en todos los modales, `role="tablist"`/`role="tab"`, asociación explícita `<label for="...">`, `@media (prefers-reduced-motion: reduce)` y áreas táctiles >= 44 x 44 px incluyendo los 5 módulos en navegación móvil.
+- **Datos Honestos & Persistencia Local:** Registros iniciales marcados explícitamente como `[DEMO]` con botón de purga (`BoxTrackCacheService.purgeData()`), carga real de fotografías locales en actas pre-daño, firmas ePOD ingresadas por operador/cliente mediante modal dedicado y estado de red en vivo (`navigator.onLine`).
+- **Offline-First & CSP Estricto:** CSS compilado localmente en `styles.css` sin dependencias CDN en runtime, `manifest.json` para instalación PWA, `src/sw-register.js` externo sin `'unsafe-inline'` en `firebase.json`, y `sw.js` con caché atómica versionada.

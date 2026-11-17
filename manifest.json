@@ -1,0 +1,20 @@
+{
+  "name": "BoxTrack - Mudanzas Corporativas & Guardamuebles",
+  "short_name": "BoxTrack",
+  "description": "Gestion forense de mudanzas corporativas, cubaje volumetrico, actas pre-dano, rotulos QR y guardamuebles.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#111317",
+  "theme_color": "#f59e0b",
+  "lang": "es-AR",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%23111317'/%3E%3Cpath d='M96 28L36 60v72l60 32 60-32V60L96 28zm0 20l40 21-40 21-40-21 40-21zm-44 37l36 19v40l-36-19V85zm88 0v40l-36 19v-40l36-19z' fill='%23f59e0b'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

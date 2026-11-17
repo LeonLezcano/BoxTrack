@@ -1,9 +1,10 @@
 /**
- * BoxTrack Offline Cache & Sincronización Local
+ * BoxTrack Offline Cache & Sincronizacion Local
  * Regla Inquebrantable #14: Invariante Anti-Siembras Fantasma
  */
 const PURGE_FLAG = 'boxtrack_demo_purged';
 const STORAGE_KEY_ORDERS = 'boxtrack_orders_v1';
+const STORAGE_KEY_DAMAGES = 'boxtrack_damages_v1';
 const STORAGE_KEY_CONTRACTS = 'boxtrack_contracts_v1';
 const STORAGE_KEY_OUTBOX = 'boxtrack_outbox_v1';
 
@@ -32,6 +33,16 @@ function removeStorageItem(key) {
   }
 }
 
+function safeJsonParse(raw, fallback = []) {
+  if (!raw) return fallback;
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 export class BoxTrackCacheService {
   static isPurged() {
     return getStorageItem(PURGE_FLAG) === 'true';
@@ -40,6 +51,7 @@ export class BoxTrackCacheService {
   static purgeData() {
     setStorageItem(PURGE_FLAG, 'true');
     removeStorageItem(STORAGE_KEY_ORDERS);
+    removeStorageItem(STORAGE_KEY_DAMAGES);
     removeStorageItem(STORAGE_KEY_CONTRACTS);
     removeStorageItem(STORAGE_KEY_OUTBOX);
   }
@@ -62,8 +74,16 @@ export class BoxTrackCacheService {
 
   static getOrders() {
     if (this.isPurged()) return [];
-    const raw = getStorageItem(STORAGE_KEY_ORDERS);
-    return raw ? JSON.parse(raw) : [];
+    return safeJsonParse(getStorageItem(STORAGE_KEY_ORDERS), []);
+  }
+
+  static saveDamages(damages = []) {
+    setStorageItem(STORAGE_KEY_DAMAGES, JSON.stringify(damages));
+  }
+
+  static getDamages() {
+    if (this.isPurged()) return [];
+    return safeJsonParse(getStorageItem(STORAGE_KEY_DAMAGES), []);
   }
 
   static saveContracts(contracts = []) {
@@ -72,13 +92,11 @@ export class BoxTrackCacheService {
 
   static getContracts() {
     if (this.isPurged()) return [];
-    const raw = getStorageItem(STORAGE_KEY_CONTRACTS);
-    return raw ? JSON.parse(raw) : [];
+    return safeJsonParse(getStorageItem(STORAGE_KEY_CONTRACTS), []);
   }
 
   static enqueueOutbox(action) {
-    const raw = getStorageItem(STORAGE_KEY_OUTBOX);
-    const queue = raw ? JSON.parse(raw) : [];
+    const queue = this.getOutbox();
     queue.push({
       id: `OUT-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
       action,
@@ -88,8 +106,7 @@ export class BoxTrackCacheService {
   }
 
   static getOutbox() {
-    const raw = getStorageItem(STORAGE_KEY_OUTBOX);
-    return raw ? JSON.parse(raw) : [];
+    return safeJsonParse(getStorageItem(STORAGE_KEY_OUTBOX), []);
   }
 
   static clearOutbox() {

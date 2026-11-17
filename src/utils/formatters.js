@@ -41,47 +41,47 @@ export const Formatters = {
     const map = {
       'PRESUPUESTADO': {
         label: 'Presupuestado',
-        bg: 'bg-slate-800',
-        text: 'text-slate-300',
-        border: 'border-slate-700',
-        icon: '📋'
+        bg: 'bg-[#1e2430]',
+        text: 'text-[#d8dee9]',
+        border: 'border-[#384152]',
+        icon: 'clipboard'
       },
       'CARGA_EN_ORIGEN': {
         label: 'Cargando en Origen',
-        bg: 'bg-blue-500/20',
-        text: 'text-blue-400',
-        border: 'border-blue-500/40',
-        icon: '🚛'
+        bg: 'bg-blue-950',
+        text: 'text-blue-200',
+        border: 'border-blue-700',
+        icon: 'truck'
       },
       'EN_TRANSITO': {
         label: 'En Tránsito / Ruta',
-        bg: 'bg-purple-500/20',
-        text: 'text-purple-400',
-        border: 'border-purple-500/40',
-        icon: '🛣️'
+        bg: 'bg-sky-950',
+        text: 'text-sky-200',
+        border: 'border-sky-700',
+        icon: 'route'
       },
       'EN_BAULERA_STORAGE': {
         label: 'En Guardamuebles / Box',
-        bg: 'bg-amber-500/20',
-        text: 'text-amber-400',
-        border: 'border-amber-500/40',
-        icon: '📦'
+        bg: 'bg-amber-950',
+        text: 'text-amber-200',
+        border: 'border-amber-700',
+        icon: 'box'
       },
       'DELIVERED_CONFIRMED': {
-        label: 'Entregado & Conforme',
-        bg: 'bg-emerald-500/20',
-        text: 'text-emerald-400',
-        border: 'border-emerald-500/40',
-        icon: '✓'
+        label: 'Entregado y Conforme',
+        bg: 'bg-emerald-950',
+        text: 'text-emerald-200',
+        border: 'border-emerald-700',
+        icon: 'check'
       }
     };
 
     return map[status] || {
       label: status || 'Desconocido',
-      bg: 'bg-slate-800',
-      text: 'text-slate-400',
-      border: 'border-slate-700',
-      icon: '•'
+      bg: 'bg-[#1e2430]',
+      text: 'text-[#cbd5e1]',
+      border: 'border-[#384152]',
+      icon: 'dot'
     };
   },
 
@@ -89,47 +89,47 @@ export const Formatters = {
     const map = {
       'DISPONIBLE': {
         label: 'Disponible',
-        bg: 'bg-emerald-500/20',
-        text: 'text-emerald-400',
-        border: 'border-emerald-500/40',
-        icon: '🟢'
+        bg: 'bg-emerald-950',
+        text: 'text-emerald-200',
+        border: 'border-emerald-700',
+        icon: 'available'
       },
       'OCUPADO_AL_DIA': {
         label: 'Ocupado (Al Día)',
-        bg: 'bg-blue-500/20',
-        text: 'text-blue-400',
-        border: 'border-blue-500/40',
-        icon: '📦'
+        bg: 'bg-blue-950',
+        text: 'text-blue-200',
+        border: 'border-blue-700',
+        icon: 'box'
       },
       'EN_MORA_AVISO': {
         label: 'Mora (> 10 Días)',
-        bg: 'bg-amber-500/20',
-        text: 'text-amber-400',
-        border: 'border-amber-500/40',
-        icon: '⚠️'
+        bg: 'bg-amber-950',
+        text: 'text-amber-200',
+        border: 'border-amber-700',
+        icon: 'warning'
       },
       'ACCESO_BLOQUEADO': {
         label: 'Acceso Bloqueado',
-        bg: 'bg-rose-500/20',
-        text: 'text-rose-400',
-        border: 'border-rose-500/40',
-        icon: '⛔'
+        bg: 'bg-rose-950',
+        text: 'text-rose-200',
+        border: 'border-rose-700',
+        icon: 'blocked'
       },
       'INTIMACION_REMATE': {
         label: 'Intimación Pre-Remate',
-        bg: 'bg-red-900/40',
-        text: 'text-red-400',
-        border: 'border-red-500/60',
-        icon: '⚖️'
+        bg: 'bg-red-950',
+        text: 'text-red-200',
+        border: 'border-red-700',
+        icon: 'legal'
       }
     };
 
     return map[status] || {
       label: status || 'Desconocido',
-      bg: 'bg-slate-800',
-      text: 'text-slate-400',
-      border: 'border-slate-700',
-      icon: '•'
+      bg: 'bg-[#1e2430]',
+      text: 'text-[#cbd5e1]',
+      border: 'border-[#384152]',
+      icon: 'dot'
     };
   },
 
@@ -149,7 +149,7 @@ export const Formatters = {
     const b = this.moveStatusBadge(status);
     return {
       ...b,
-      badgeClass: `inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold border ${b.bg} ${b.text} ${b.border}`
+      badgeClass: `inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold border ${b.bg} ${b.text} ${b.border}`
     };
   },
 
@@ -157,7 +157,7 @@ export const Formatters = {
     const b = this.storageStatusBadge(status);
     return {
       ...b,
-      badgeClass: `inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold border ${b.bg} ${b.text} ${b.border}`
+      badgeClass: `inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold border ${b.bg} ${b.text} ${b.border}`
     };
   }
 };

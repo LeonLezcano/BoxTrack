@@ -2,6 +2,8 @@
  * Sanitizer Zero-Sink DOM
  * Directiva Mandatoria AiAppFactory Standard
  */
+const SAFE_RASTER_DATA_URI = /^data:image\/(png|jpe?g|webp);base64,[a-z0-9+/=]+$/i;
+
 export const Sanitizer = {
   escapeHTML(str) {
     if (str === null || str === undefined) return '';
@@ -30,9 +32,14 @@ export const Sanitizer = {
           el.removeAttribute(attr.name);
         }
         if (['href', 'src', 'action'].includes(attr.name)) {
-          const val = attr.value.trim().toLowerCase();
-          if (val.startsWith('javascript:') || val.startsWith('data:') || val.startsWith('vbscript:')) {
+          const val = attr.value.trim();
+          const lower = val.toLowerCase();
+          if (lower.startsWith('javascript:') || lower.startsWith('vbscript:')) {
             el.removeAttribute(attr.name);
+          } else if (lower.startsWith('data:')) {
+            if (!(attr.name === 'src' && el.tagName === 'IMG' && SAFE_RASTER_DATA_URI.test(val))) {
+              el.removeAttribute(attr.name);
+            }
           }
         }
       });
@@ -45,7 +52,10 @@ export const Sanitizer = {
     if (!url) return '';
     const clean = String(url).trim();
     const lower = clean.toLowerCase();
-    if (lower.startsWith('javascript:') || lower.startsWith('vbscript:') || lower.startsWith('data:text/html')) {
+    if (lower.startsWith('javascript:') || lower.startsWith('vbscript:')) {
+      return '#';
+    }
+    if (lower.startsWith('data:') && !SAFE_RASTER_DATA_URI.test(clean)) {
       return '#';
     }
     return clean;

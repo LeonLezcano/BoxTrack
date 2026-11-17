@@ -16,6 +16,7 @@ export class MoveOrderService {
     items = [], // Array de { tag, name, type, quantity, room, isFragile }
     damages = [], // Array de daños previos
     storageUnitId = null, // Si va a baulera intermedia
+    assignedVehicle = null,
     pricing = { totalAmount: 180000, depositPaid: 50000 }
   }) {
     if (!customerId || !customerName || !originAddress || !destinationAddress) {
@@ -61,6 +62,7 @@ export class MoveOrderService {
       damages,
       riskEvaluation,
       storageUnitId,
+      assignedVehicle: assignedVehicle || volumeSummary.suggestedVehicle?.id || 'TRUCK_MEDIUM',
       pricing: {
         totalAmount: total,
         depositPaid: deposit,

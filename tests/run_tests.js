@@ -211,13 +211,13 @@ assert(Formatters.currencyUSD(250.75).includes('250.75'), 'Currency USD formats 
 
 // 21. Move status badge mapping
 const badgeTransit = Formatters.moveStatusBadge('EN_TRANSITO');
-assert(badgeTransit.icon === '🛣️' && badgeTransit.text.includes('purple'), 'Status badge styles EN_TRANSITO in purple');
+assert(badgeTransit.icon === 'route' && badgeTransit.text.includes('sky'), 'Status badge styles EN_TRANSITO in sky');
 const badgeDelivered = Formatters.moveStatusBadge('DELIVERED_CONFIRMED');
-assert(badgeDelivered.icon === '✓' && badgeDelivered.text.includes('emerald'), 'Status badge styles DELIVERED_CONFIRMED in emerald');
+assert(badgeDelivered.icon === 'check' && badgeDelivered.text.includes('emerald'), 'Status badge styles DELIVERED_CONFIRMED in emerald');
 
 // 22. Storage status badge mapping
 const badgeBlocked = Formatters.storageStatusBadge('ACCESO_BLOQUEADO');
-assert(badgeBlocked.icon === '⛔' && badgeBlocked.text.includes('rose'), 'Storage badge styles ACCESO_BLOQUEADO in rose');
+assert(badgeBlocked.icon === 'blocked' && badgeBlocked.text.includes('rose'), 'Storage badge styles ACCESO_BLOQUEADO in rose');
 
 // 23. DOM Sanitizer escapes dangerous characters
 const escaped = Sanitizer.escapeHTML('<script>alert("hack")</script>');
@@ -393,6 +393,29 @@ assert(orderErrorThrown === true, 'Move order service rejects empty required dat
 const packageJson = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8'));
 const versionJson = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'version.json'), 'utf8'));
 assert(packageJson.version === versionJson.version.replace(/^v/, ''), 'package.json and version.json versions match');
+
+// 48. Offline-first PWA & CSP hygiene checks
+const swContent = fs.readFileSync(path.resolve(process.cwd(), 'sw.js'), 'utf8');
+assert(swContent.includes('./styles.css') && swContent.includes('./manifest.json') && swContent.includes('./src/main.js') && !swContent.includes('./src/app.js'), 'sw.js precaches local styles.css, manifest.json, and src/main.js without missing src/app.js');
+assert(!fbContent.includes('cdn.tailwindcss.com') && !fbContent.includes("'unsafe-inline'"), 'firebase.json CSP removes cdn.tailwindcss.com and unsafe-inline');
+assert(fs.existsSync(path.resolve(process.cwd(), 'styles.css')) && fs.existsSync(path.resolve(process.cwd(), 'manifest.json')) && fs.existsSync(path.resolve(process.cwd(), 'DESIGN.md')), 'Local styles.css, manifest.json, and DESIGN.md exist');
+
+// 49. Damages cache persistence & assignedVehicle tracking
+BoxTrackCacheService.resetPurgeForTesting();
+BoxTrackCacheService.saveDamages([damageItem]);
+assert(BoxTrackCacheService.getDamages().length === 1, 'BoxTrackCacheService persists and retrieves damage records');
+BoxTrackCacheService.purgeData();
+assert(BoxTrackCacheService.getDamages().length === 0, 'BoxTrackCacheService.purgeData clears damage records');
+const vehicleOrder = MoveOrderService.createOrder({
+  customerId: 'CLI-VEH-01',
+  customerName: 'Empresa Transporte',
+  customerPhone: '+5491111112222',
+  originAddress: 'Origen 100',
+  destinationAddress: 'Destino 200',
+  assignedVehicle: 'TRUCK_LARGE',
+  items: [{ type: 'BOX_STANDARD', quantity: 5 }]
+});
+assert(vehicleOrder.assignedVehicle === 'TRUCK_LARGE', 'MoveOrderService stores explicit assignedVehicle selection');
 
 console.log('\n======================================================================');
 console.log(`  TOTAL: ${passed + failed} tests | ${passed} PASSED | ${failed} FAILED`);
